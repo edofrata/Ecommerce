@@ -1,30 +1,4 @@
 
-
-  <!-- Navigation -->
-  <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">FancyShop</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="home.html">Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="products.html">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Basket</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>  -->
 <?php 
   include('common.php');
   outputHeader("FancyShop");
@@ -37,7 +11,7 @@
 
       <div class="col-lg-3">
 
-        <h1 class="my-4">FancyShop</h1>
+        <h1 class="my-4">Products</h1>
         <div class="list-group">
           <a href="#" class="list-group-item">Consoles</a>
           <a href="#" class="list-group-item">Games</a>

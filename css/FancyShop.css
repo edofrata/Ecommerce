@@ -3,7 +3,7 @@ body {
 }
 /* Home page carousel settings */
 .carousel-item {
-  height: 70vh;
+  height: 80vh;
   min-height: 300px;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
@@ -21,6 +21,18 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
+
+.demo{
+  height: 10vh;
+  width: auto;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .portfolio-item {
   margin-bottom: 30px;
 }
@@ -30,4 +42,11 @@ body {
 
   width: 40%;
   height:auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
