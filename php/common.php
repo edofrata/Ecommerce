@@ -20,12 +20,19 @@ function outputHeader($title)
 function outputBannerNavigation($pageName)
 {
     //Output banner and first part of navigation
-    echo '<div class="banner">FancyShop</div>';
-    echo '<div class="navigation">';
+
+    echo '<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">';
+    echo '<div class="container">';
+    echo '<a href="index.php" class="navbar-brand"><img class="logo_style" src="../assets/logo.png" alt="Logo image"></a></div>';
+    echo '<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                                             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">';
 
     //Array of pages to link to
     $linkNames = array("Home", "Product", "Contact", "Basket");
-    $linkAddresses = array("home.php", "products.php", "contact.php", "basket.php");
+    $linkAddresses = array("index.php", "products.php", "contact.php", "basket.php");
 
     //Output navigation
     for ($x = 0; $x < count($linkNames); $x++) {
@@ -35,7 +42,11 @@ function outputBannerNavigation($pageName)
         }
         echo 'href="' . $linkAddresses[$x] . '">' . $linkNames[$x] . '</a>';
     }
+
     echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    echo '</nav>';
 }
 
 //Outputs closing body tag and closing HTML tag
@@ -47,7 +58,7 @@ function outputFooter()
                         <p class="m-0 text-center text-white"> 
                     </div>
             </footer>';
-    
+
     echo '  <script src="../vendor/jquery/jquery.min.js"></script>
             <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js">
             </script>';
