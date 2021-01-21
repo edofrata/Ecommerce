@@ -58,36 +58,45 @@ body {
 
 /* ----------------Login Design-------------- */
 .modal-login {		
-  color: #636363;
+  color: #1D2934;
   width: 350px;
   margin: 130px auto 0;
+  border-radius: 10px;
 }
 .modal-login .modal-content {
   padding: 20px;
   border-radius: 5px;
   border: none;
+  border-radius: 10px;
 }
 .modal-login .modal-header {
   border-bottom: none;   
       position: relative;
       justify-content: center;
+      border-radius: 10px;
 }
 .modal-login h4 {
   text-align: center;
   font-size: 26px;
   margin: 30px 0 -15px;
+
+  border-radius: 10px;
 }
 .modal-login .form-control:focus {
   border-color: #70c5c0;
+  border-radius: 10px;
 }
 .modal-login .form-control, .modal-login .btn {
   min-height: 40px;
   border-radius: 3px; 
+  border-radius: 10px;
 }
 .modal-login .close {
       position: absolute;
   top: -5px;
   right: -5px;
+
+  border-radius: 10px;
 }	
 .modal-login .modal-footer {
   background: #ecf0f1;
@@ -97,9 +106,11 @@ body {
   margin: 0 -20px -20px;
   border-radius: 5px;
   font-size: 13px;
+  border-radius: 10px;
 }
 .modal-login .modal-footer a {
   color: #999;
+  border-radius: 10px;
 }		
 .modal-login .avatar {
   position: absolute;
@@ -114,6 +125,7 @@ body {
   background: #60c7c1;
   padding: 15px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+
 }
 .modal-login .avatar img {
   width: 100%;
@@ -126,10 +138,12 @@ body {
   transition: all 0.4s;
       line-height: normal;
       border: none;
+      border-radius: 10px;
   }
 .modal-login .btn:hover, .modal-login .btn:focus {
   background: #1D2934;
   outline: none;
+  border-radius: 10px;
 }
 
 .user_login{
@@ -141,68 +155,79 @@ body {
 
 /* -----------------------REGISTRATION POP UP ----------------------- */
 
-.form-control {
-border-color: #e5e5e5;
-box-shadow: none;
-}
 .form-control:focus {
-border-color: #0cb4aa;
+  border-color: #0d968d;
+  box-shadow: 0 0 8px #0cb4aa;
+  border-radius: 10px;
 }
 .contact-modal {
-padding: 50px;
-margin: 30px auto;
+  width: 600px;
+  padding: 50px;
+  margin: 30px auto;
+  border-radius: 10px;
 }
 .contact-modal h4 {
-font-size: 26px;
-display: inline-block;
+  font-size: 26px;
+  display: inline-block;
+  border-radius:10px;
 }
 .contact-modal .form-control, .contact-modal .btn  {
-min-height: 38px;
-border-radius: 1px;
-outline: none;
-border-radius: 2px;
-transition: all 0.5s;
-}
-.contact-modal textarea {
-height: 144px;
+  min-height: 38px;
+  border-radius: 1px;
+  outline: none;
+  border-radius: 10px;
 }
 .contact-modal .btn-primary {
-min-width: 120px;
-background: #0cb4aa;
-border: none;
+  min-width: 100px;
+  background: #1D2934;
+  border: none;
+  border-radius: 10px;
 }
-.contact-modal .btn-primary:hover, .contact-modal .btn-primary:focus {
-background: #0ba69e;
-outline: none;
+.contact-modal .btn-primary:hover {
+  background: #3fa862;
+  border-radius: 10px;
+}
+.contact-modal .btn-primary:focus {
+  box-shadow: 0 0 8px #0cb4aa;
+  border-radius: 10px;
 }
 .contact-modal .btn-link {
-color: #0cb4aa;
+  color:#a30d0d;
+  border-radius: 10px;
 }
 .contact-modal label {
-opacity: 0.9;
-font-weight: normal;
-font-size: 95%;
+  opacity: 0.9;
+  font-weight: normal;
+  font-size: 95%;
+  border-radius: 10px;
 }
 .contact-modal textarea {
-resize: vertical;
+  resize: vertical;
+  border-radius: 10px;
+}
+.contact-modal.modal-dialog {
+  width: 480px;
+  border-radius: 10px;
 }
 .contact-modal .modal-header {
-padding: 20px 35px 15px;
+  padding: 20px 35px 14px;
+  border-radius: 10px;
 }
 .contact-modal .modal-content {
-border-radius: 1px;
-}
-.modal-footer {
-padding: 20px 35px;
+  border-radius: 1px;
+  border-radius: 10px;
 }
 .contact-modal .close {
-position: absolute;
-right: 35px;
-top: 25px;
+  position: absolute;
+  right: 35px;
+  top: 25px;
+  border-radius: 10px;
 }
 .contact-modal .modal-body {
-padding: 25px 35px 15px;
+  padding: 20px 35px 35px;
+  border-radius: 10px;
 }
 .hint-text {
-opacity: 0.8;
+  opacity: 0.8;
+  border-radius: 10px;
 }

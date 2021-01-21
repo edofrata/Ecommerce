@@ -116,7 +116,7 @@ function outputBannerNavigation($pageName)
                      </form>
                     </div>
                     <div class="modal-footer">
-                     <a href="#myModal2" class="trigger-btn" data-toggle="modal">New User?</a>
+                     <a href="#myModal2" class="trigger-btn" data-toggle="modal" style="color: #1D2934;">New User?</a>
                    </div>
                 </div>
              </div>
@@ -125,43 +125,37 @@ function outputBannerNavigation($pageName)
     echo '<!-------------------------Start Registration ---------------->';
     echo '<!-- Modal HTML -->
     <div id="myModal2" class="modal fade">
-        <div class="modal-dialog modal-lg contact-modal">
-            <div class="modal-content">
+	<div class="modal-dialog contact-modal">
+		<div class="modal-content">
+			<div class="modal-header">				
+				<h4 class="modal-title">Sign Up to FancyShop</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
                 <form action="/examples/actions/confirmation.php" method="post">
-                    <div class="modal-header">				
-                        <h4 class="modal-title">Sign Up</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputName" placeholder="Full Name" required>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="inputName" placeholder=" Full Name" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="inputAddress" placeholder="Address" required>
-                                </div>
-                                             <div class="form-group">
-                                    <input type="text" class="form-control" id="inputCity" placeholder="City" required>
-                                    </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="inputPhone" placeholder="Phone" required>
-                                </div>
-                            </div>
-             
-                        </div>                    
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
                     </div>
-                    <div class="modal-footer">
-                            <input type="button" class="btn btn-link" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-primary" value="Send">
-                        </div>
+                    <div class="form-group">
+                       <input type="text" class="form-control" id="inputAddress" placeholder="Address" required>
+                    </div>
+                      <div class="form-group">
+                  <input type="text" class="form-control" id="inputCity" placeholder="City" required>
+                    </div>
+                      <div class="form-group">
+                  <input type="text" class="form-control" id="inputPhone" placeholder="Phone" required>
+                    </div>
+                    
+                    <input type="submit" class="btn btn-primary center" value="Send">
+                    <input type="button" class="btn btn-link center" data-dismiss="modal" value="Cancel">
                 </form>
-            </div>
-        </div>
-    </div>';
+			</div>
+		</div>
+	</div>
+</div>';
 
 }
  
