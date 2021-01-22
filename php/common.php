@@ -15,7 +15,7 @@ function outputHeader($title)
   echo '<body>';
 }
 
-/* Ouputs the banner and the navigation bar
+/* ------------------------Ouputs the banner and the navigation bar---------------------------
     The selected class is applied to the page that matches the page name variable */
 function outputBannerNavigation($pageName)
 {
@@ -24,23 +24,23 @@ function outputBannerNavigation($pageName)
 
   echo '<div class="container">';
   echo '<a href="index.php" class="navbar-brand"><img class="logo_style" src="../assets/logo-white.png" alt="Logo image"></a></div>';
-  //   hamburger menu for smaller screens
+  //   --------------------------hamburger menu for smaller screens----------------
   echo '<button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                                              aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon "></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="nav nav-pills nav-fill">';
+            <ul class="nav nav-pills ">';
 
 
-  //Array of pages to link to
+  //---------------Array of pages to link to------------------------
   $linkNames = array("Home", "Products", "Contact", "Basket");
   $linkAddresses = array("index.php", "products.php", "contact.php", "basket.php");
 
   //Output navigation
   for ($x = 0; $x < count($linkNames); $x++) {
 
-    // if the page is products, create a menu dropdown
+    //--------------------- if the page is products, create a menu dropdown-----------------------
     if ($linkNames[$x] == $pageName && $linkNames[$x] == "Products" || $linkNames[$x] == "Products") {
       echo '<li class="nav-item dropdown">';
       if ($linkNames[$x] == $pageName)
@@ -55,13 +55,13 @@ function outputBannerNavigation($pageName)
                   </div>';
       echo '</li>';
     }
-    // it creates the "active" page
+    // -----------------it creates the "active" page------------------
     else if ($linkNames[$x] == $pageName) {
       echo '<li class="nav-item">';
       echo '<a ';
       echo 'class="nav-link active" href="' . $linkAddresses[$x] . '">' . $linkNames[$x] . '</a> ';
       echo '</li>';
-      // dropdown create the rest of the menu
+      // ----------------------dropdown create the rest of the menu--------------
     } else {
       echo '<li class="nav-item">';
       echo '<a ';
@@ -209,6 +209,7 @@ function cards($Product, array $products)
   </div> ';
 }
 
+//-------------------product at the home page --------------------------
 function intro_product($product_name, $image_path)
 {
 
@@ -224,7 +225,7 @@ function intro_product($product_name, $image_path)
            </div>';
 }
 
-
+// ------------------------product in products page------------------------------
 function item_show($name, $price, $product_image)
 {
 
@@ -247,7 +248,7 @@ function item_show($name, $price, $product_image)
         </div>';
 }
 
-// csm user order done
+// -------------------------csm user order done-----------------------
 function csm_user($date, $name, $price){
 
  echo'  <tr>
@@ -277,7 +278,7 @@ function csm_user($date, $name, $price){
 }
 
 
-//Outputs closing body tag and closing HTML tag
+//----------------------Outputs closing body tag and closing HTML tag---------------------
 function outputFooter()
 {
   echo '

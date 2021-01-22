@@ -6,12 +6,13 @@ outputBannerNavigation("Products");
 
 
 
-
+<!--------------------------- GAME PAGE LAYOUT---------------------------------->
 <div class="col-lg-12">
 
 <div class="container">
     <h1 class="my-4" style="text-align: center">Consoles</h1>
     <div class="row">
+ <!---------------------- ITEM PROMPED FROM PHP --------------------->
         <?php
 
 item_show("Fifa 21", "£49.99", "../assets/game_cover/fifa21_game.jpg");

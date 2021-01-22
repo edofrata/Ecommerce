@@ -8,18 +8,6 @@ outputBannerNavigation("Products");
 
     <div class="row">
 
-        <!-- <div class="col-lg-3">
-
-      <h1 class="my-4">Products</h1>
-      <div class="list-group">
-        <a href="products.php" class="list-group-item">All Products</a>
-        <a href="consoles.php" class="list-group-item">Consoles</a>
-        <a href="games.php" class="list-group-item">Games</a>
-
-      </div>
-
-    </div> -->
-
         <div class="col-lg-12">
 
             <div class="container">

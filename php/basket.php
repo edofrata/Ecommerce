@@ -3,10 +3,10 @@ include('common.php');
 outputHeader("FancyShop");
 outputBannerNavigation("Basket");
 ?>
-
+<!---------------------------- basket layout------------------->
 <div class="main">
   <h1>Shopping cart</h1>
-  <h2 class="sub-heading">Free <strong>Shipping</strong> in all the UK!</h2>
+  <h2 class="sub-heading">Free <strong>Shipping</strong> ever £100!</h2>
 
   <section class="shopping-cart">
     <ol class="ui-list shopping-cart--list" id="shopping-cart--list">
@@ -34,7 +34,7 @@ outputBannerNavigation("Basket");
       </script>
 
     </ol>
-
+<!------------------------------- footer for the basket------------------------------------->
     <footer class="_grid cart-totals">
       <div class="_column subtotal" id="subtotalCtr">
         <div class="cart-totals-key">Subtotal</div>
@@ -59,8 +59,8 @@ outputBannerNavigation("Basket");
 
   </section>
 </div>
-
-
+<!-------------------------- script which calls the js file for the basket------------------------->
+<script src="../js/basket.js"></script>
 <?php
 outputFooter();
 ?>

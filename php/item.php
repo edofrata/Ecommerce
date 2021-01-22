@@ -23,8 +23,9 @@ outputBannerNavigation("Basket");
           <li><strong> Memory: </strong>16GB GDDR6/256-bit</li>
           <li><strong> Networking: </strong>	Ethernet (10BASE-T, 100BASE-TX, 1000BASE-T)<br> IEEE 802.11 a/b/g/n/ac/ax<br> Bluetooth 5.1</li>
         </ul>
+        <button type="button" class="btn btn-success center">Add to basket</button>
       </div>
-
+    
     </div>
     <!-- /.row -->
 

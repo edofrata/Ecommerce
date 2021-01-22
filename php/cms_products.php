@@ -3,7 +3,6 @@ include('common.php');
 outputHeader("FancyShop");
 outputBannerNavigation("Home");
 ?>
-
 <!------------------------------- CMS LAYOUT SIDEBAR-------------------------------------->
 <div class="cms_body">
 <div class="container-fluid">
@@ -12,15 +11,15 @@ outputBannerNavigation("Home");
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="cms.php">
+            <a class="nav-link " href="cms.php">
               <i class="zmdi zmdi-widgets"></i>
-              Dashboard <span class="sr-only">(current)</span>
+              Dashboard 
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cms_products.php">
+            <a class="nav-link active" href="cms_products.php">
               <i class="zmdi zmdi-shopping-cart"></i>
-              Products
+              Products <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
@@ -54,7 +53,7 @@ outputBannerNavigation("Home");
       </div>
     </nav>
 
-<!------------------------------------ CARDS LAYOUT--------------------------------->
+    <!------------------------------------ CARDS LAYOUT--------------------------------->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 my-3">
       <div class="card-list">
         <div class="row">
@@ -89,31 +88,34 @@ outputBannerNavigation("Home");
         </div>
       </div>
 
- <!------------------------------ TABLE LAYOUT----------------------->
+      <!------------------------------ TABLE LAYOUT----------------------->
       <div class="projects mb-4">
         <div class="projects-inner">
           <header class="projects-header">
-            <div class="title">Orders Made</div>
-            <div class="count">| 5 orders</div>
+            <div class="title">Products</div>
+            <div class="count">| 5 products</div>
+            <button type="button" class="btn btn-info">Add Product</button>
+            <button type="button" class="btn btn-danger">Delete Product</button>
             <i class="zmdi zmdi-download"></i>
           </header>
           <table class="projects-table">
             <thead>
               <tr>
-                <th>Orders</th>
+                <th>Attribute</th>
                 <th>Date</th>
-                <th>User</th>
-                <th>Order Cost</th>
-                <th>Status</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
               </tr>
             </thead>
- <!-------------- USER PROMPT FROM PHP --------------------------->
+
+<!-------------- USER PROMPT FROM PHP --------------------------->
 <?php 
 
-csm_user("15th Jan 2021", "Edoardo Fratantonio", "£299");
-csm_user("15th Jan 2021", "John Room", "£299");
-csm_user("15th Jan 2021", "Joseph Godwins", "£299");
-csm_user("15th Jan 2021", "Sakarye Trust", "£299");
+csm_user("15th Jan 2021", "Playstation 4 Pro", "£299");
+csm_user("15th Jan 2021", "Playstation 5", "£499");
+csm_user("15th Jan 2021", "Xbox One", "£459");
+csm_user("15th Jan 2021", "Xbox Series X", "£299");
 csm_user("15th Jan 2021", "Matt Watson", "£299");
 ?>
           
