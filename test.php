@@ -6,7 +6,7 @@ outputBannerNavigation("Basket");
 
 <div class="main">
   <h1>Shopping cart</h1>
-  <h2 class="sub-heading">Free <strong>Shipping</strong> in all the UK!</h2>
+  <h2 class="sub-heading">Free shipping from $100!</h2>
 
   <section class="shopping-cart">
     <ol class="ui-list shopping-cart--list" id="shopping-cart--list">

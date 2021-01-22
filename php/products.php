@@ -4,24 +4,24 @@ outputHeader("FancyShop");
 outputBannerNavigation("Products");
 ?>
 <!-- Page Content -->
-<div class="container" >
+<div class="container">
 
   <div class="row">
 
-    <div class="col-lg-3">
+    <!-- <div class="col-lg-8 center">
 
-      <h1 class="my-4">Products</h1>
+      <h1 class="my-4 center">Products</h1>
       <div class="list-group">
-        <a href="products.php" class="list-group-item">All Products</a>
-        <a href="#" class="list-group-item">Consoles</a>
-        <a href="#" class="list-group-item">Games</a>
+        <a href="products.php" class="list-group-item center">All Products</a>
+        <a href="#" class="list-group-item center">Consoles</a>
+        <a href="#" class="list-group-item center">Games</a>
 
       </div>
 
-    </div>
+    </div> -->
     <!-- /.col-lg-3 -->
 
-    <div class="col-lg-9">
+    <div class="col-lg-12">
 
       <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
@@ -41,7 +41,7 @@ outputBannerNavigation("Products");
           <span class="sr-only">Next</span>
         </a>
       </div>
-      <div class="container" >
+      <div class="container">
         <h1 class="my-4" style="text-align: center">All Products</h1>
         <div class="row">
           <?php
@@ -58,7 +58,7 @@ outputBannerNavigation("Products");
           item_show("Fortnite", "£24.99", "../assets/game_cover/fortnite_game.jpg");
           item_show("Marvel’s Spider-Man: Miles Morales", "£69.99", "../assets/game_cover/spiderman_ps5.jpg");
           item_show("Forza Horizon 4", "£59.99", "../assets/game_cover/forza_horizon_xbox.jpg");
-          item_show("Grand Theft AUto V", "£25.99", "../assets/game_cover/gtav.jpg");
+          item_show("Grand Theft Auto V", "£25.99", "../assets/game_cover/gtav.jpg");
           item_show("Watch Dogs Legion", "£34.99", "../assets/game_cover/watch_dogsps4.jpg");
           item_show("Red Dead Redemption II", "£29.99", "../assets/game_cover/red_dead.jpg");
           item_show("God Of War", "£39.99", "../assets/game_cover/god_of_war.jpg");
@@ -78,3 +78,5 @@ outputBannerNavigation("Products");
 <?php
 outputFooter();
 ?>
+
+
