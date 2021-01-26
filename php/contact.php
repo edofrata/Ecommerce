@@ -89,7 +89,8 @@
   </div>
   <!-- /.container -->
 
-  <?php 
-    outputFooter();
-  ?>
+  <?php
+scripts();
+outputFooter();
+?>
 

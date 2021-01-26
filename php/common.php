@@ -29,8 +29,8 @@ function outputBannerNavigation($pageName)
                                              aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon "></span>
           </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="nav nav-pills ">';
+            <div class="navbar2 navbar-collapse justify-content-center" id="navbarResponsive">
+            <ul class="nav nav-pills nav-fill ">';
 
 
   //---------------Array of pages to link to------------------------
@@ -69,16 +69,13 @@ function outputBannerNavigation($pageName)
       echo '</li>';
     }
   }
-  echo '<li class="nav-item">';
-  echo '<a ';
-  echo 'class="nav-link" href="' . $linkAddresses[$x] . '">' . $linkNames[$x] . '</a>';
-  echo '</li>';
   echo '</ul>';
-
   echo '</div>';
-  echo '  <div class="text-right">
-    <a href="#myModal" onaction class="trigger-btn" data-toggle="modal"><img class="user_login" src="../assets/user.png" alt="Logo image"></a>
-    </div>';
+  
+  echo ' <div class="user_login">
+   <a href="#myModal" onaction class="trigger-btn" data-toggle="modal"><img  src="../assets/user.png" alt="Logo image"></a>
+   </div>';
+
   // search bar implementation
   echo ' <form class="form-inline my-2 my-lg-0 ml-auto">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -89,8 +86,8 @@ function outputBannerNavigation($pageName)
   echo '</div>';
   echo '</div>';
   echo '</nav>';
-  echo '     <!--------------- Sign IN------------------------->
-            <div id="myModal" class="modal fade">
+  echo '<!--------------- Sign IN------------------------->
+          <div id="myModal" class="modal fade">
                 <div class="modal-dialog modal-login">
                     <div class="modal-content">
                      <div class="modal-header">
@@ -101,24 +98,25 @@ function outputBannerNavigation($pageName)
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                      </div>
                     <div class="modal-body">
-                     <form action="/examples/actions/confirmation.php" method="post">
+                   <form onsubmit="return login_real()" method="post"> 
                       <div class="form-group">
-                        <input type="text" class="form-control" name="username" placeholder="Username" required="required">		
+                        <input type="text" id="login_email" class="form-control" name="username" placeholder="Email" required="required">		
                       </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required="required">	
+                            <input type="password" id="login_password" class="form-control" name="password" placeholder="Password" required="required">	
                         </div>        
+                        <p id="login_failure"> </p>
                           <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block login-btn"><a href="cms.php">Login</button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
                           </div>
-                     </form>
+                    </form>
                     </div>
                     <div class="modal-footer">
                      <a href="#myModal2" class="trigger-btn" data-toggle="modal" style="color: #1D2934;">New User?</a>
                    </div>
                 </div>
              </div>
-        </div>  ';
+          </div> ';
   echo '<!-------------------------End Sign In------------------------>';
   echo '<!-------------------------Start Registration ---------------->';
   echo '<!-- Modal HTML -->
@@ -130,21 +128,24 @@ function outputBannerNavigation($pageName)
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
           <div class="modal-body">
-                <form action="/examples/actions/confirmation.php" method="post">
+            <form onsubmit="return store_user()" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputName" placeholder="Full Name" required>
+                        <input type="text" class="form-control" id="inputName" placeholder="Full Name" onkeyup="check_name(this)" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" onkeyup="check_email(this)" required>
                     </div>
                     <div class="form-group">
-                       <input type="text" class="form-control" id="inputAddress" placeholder="Address" required>
+                        <input type="date" class="form-control" id="inputBirth" placeholder="Birthday" required>
+                    </div>
+                    <div class="form-group">
+                       <input type="text" class="form-control" id="inputAddress" placeholder="Address" onkeyup="check_address(this)" required>
                     </div>
                       <div class="form-group">
-                  <input type="text" class="form-control" id="inputPostcode" placeholder="Postcode" required>
+                  <input type="text" class="form-control" id="inputPostcode" placeholder="Postcode" onkeyup="check_postcode(this)" required>
                     </div>
                       <div class="form-group">
-                  <input type="text" class="form-control" id="inputPhone" placeholder="Phone" required>
+                  <input type="tel" class="form-control" id="inputPhone" placeholder="Phone" onkeyup="check_phone(this)" required>
                     </div>
                     <div class="form-group">
                     <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
@@ -152,11 +153,11 @@ function outputBannerNavigation($pageName)
                     
                     <input type="submit" class="btn btn-primary center" value="Send">
                     <input type="button" class="btn btn-link center" data-dismiss="modal" value="Cancel">
-                </form>
-			</div>
-		</div>
-	</div>
-</div>';
+                </form> 
+              </div>
+            </div>
+          </div>
+        </div>';
 }
 
 
@@ -249,35 +250,42 @@ function item_show($name, $price, $product_image)
 }
 
 // -------------------------csm user order done-----------------------
-function csm_user($date, $name, $price){
+function csm_user($date, $name, $price)
+{
 
- echo'  <tr>
+  echo '  <tr>
             <td>
               <p href="#">Order</p>
             </td>
             <td>
-              <p>'. $date . '</p>
+              <p>' . $date . '</p>
             </td>
             <td class="member">
               <figure><img src="../assets/log_in.png" /></figure>
               <div class="member-info">
-                <p>'. $name . '</p>
+                <p>' . $name . '</p>
                 <p>FancyShop Member</p>
               </div>
             </td>
             <td>
-              <p>'. $price . '</p>
+              <p>' . $price . '</p>
               <p class="text-success">Paid</p>
             </td>
             <td class="status">
               <span class="status-text status-orange">In progress</span>
             </td>
           </tr>';
-
-
 }
 
+function scripts()
+{
 
+  echo '  <script src="../vendor/jquery/jquery.min.js"></script>
+          <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>       
+          <script src="../js/basket.js"></script>
+          <script src="../js/register.js"></script>
+          <script src="../js/login_recognition.js"></script>';
+}
 //----------------------Outputs closing body tag and closing HTML tag---------------------
 function outputFooter()
 {
@@ -338,11 +346,7 @@ function outputFooter()
       <!-- Copyright -->
     </footer>';
 
-  echo '  <script src="../vendor/jquery/jquery.min.js"></script>
-            <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js">
-            </script>       
-            <script src="../js/basket.js">
-            </script>';
+
   echo '</body>';
   echo '</html>';
 }

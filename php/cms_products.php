@@ -129,5 +129,6 @@ csm_user("15th Jan 2021", "Matt Watson", "£299");
 
 </div>
 <?php
+scripts();
 outputFooter();
 ?>

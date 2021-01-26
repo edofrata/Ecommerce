@@ -74,8 +74,8 @@ outputBannerNavigation("Products");
   </div>
 
 </div>
-
 <?php
+scripts();
 outputFooter();
 ?>
 

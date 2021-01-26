@@ -38,5 +38,6 @@ item_show("God Of War", "£39.99", "../assets/game_cover/god_of_war.jpg");
 
 
 <?php
+scripts();
 outputFooter();
 ?>

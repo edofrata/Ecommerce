@@ -62,5 +62,6 @@ outputBannerNavigation("Basket");
 <!-------------------------- script which calls the js file for the basket------------------------->
 <script src="../js/basket.js"></script>
 <?php
+scripts();
 outputFooter();
 ?>

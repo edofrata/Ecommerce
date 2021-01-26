@@ -57,8 +57,8 @@ body {
 /* logo deisgn adjustment */
 .logo_style {
 
-  width: 40%;
-  height: auto;
+  max-width: 250px;
+  height: 55px;
 }
 
 
@@ -73,6 +73,40 @@ body {
   color: white;
 }
 
+/* -----------NAVBAR------------ */
+
+.navbar2 a {
+  color: white;
+  font-size: 20px;
+  font-weight:200px;
+  display: table;
+  width: 100%;
+  margin:0;
+
+}
+
+.dropdown-menu {
+  background-color: #1C2A34;
+  text-align: left;
+}
+
+.navbar-brand {
+  width: 250px;
+  height: 55px;
+}
+
+/* -------------login image -------------*/
+.user-login{
+  max-width: 50px;
+  max-height: 50px;
+ 
+}
+
+.user_login img {
+  position: relative;
+  max-width: 50px;
+  margin-right: 10px;
+}
 /*-----------BASKET------------ */
 
 
@@ -187,11 +221,7 @@ body {
   border-radius: 10px;
 }
 
-.user_login {
-  position: relative;
-  right: 10px;
-  max-width: 50px;
-}
+
 
 
 /* -----------------------REGISTRATION POP UP ----------------------- */

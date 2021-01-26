@@ -64,7 +64,7 @@ outputBannerNavigation("Basket");
   </div>
   <!-- /.container -->
 
-
-<?php
+  <?php
+scripts();
 outputFooter();
 ?>

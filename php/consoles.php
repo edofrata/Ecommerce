@@ -33,5 +33,6 @@ outputBannerNavigation("Products");
 
 </div>
 <?php
+scripts();
 outputFooter();
 ?>

@@ -73,7 +73,7 @@ outputBannerNavigation("Home");
 <!-- /.container -->
 
 <!-- Footer -->
-
 <?php
+scripts();
 outputFooter();
 ?>
