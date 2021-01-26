@@ -10,6 +10,8 @@ function outputHeader($title)
   echo '<!-- Link to external style sheet -->';
   echo '<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">';
   echo ' <link href="../css/FancyShop.css" rel="stylesheet">';
+
+  echo ' <link href="../css/cart.css" rel="stylesheet">';
   echo '</head>';
 
   echo '<body>';
@@ -284,6 +286,7 @@ function scripts()
           <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>       
           <script src="../js/basket.js"></script>
           <script src="../js/register.js"></script>
+          <script src="../js/cart.js"></script>
           <script src="../js/login_recognition.js"></script>';
 }
 //----------------------Outputs closing body tag and closing HTML tag---------------------
