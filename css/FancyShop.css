@@ -94,7 +94,23 @@ body {
   width: 250px;
   height: 55px;
 }
+/*---------------- LOG IN BUTTON ---------*/
 
+.btn2{
+  margin-top: 7px;
+  max-width: 30px;
+  max-height: 35px;
+}
+
+.dropdown-item{
+  color: white;
+}
+
+
+.btn-dark{
+  background-color: #1D2A35;
+  border-color: #1D2A35;
+}
 /* -------------login image -------------*/
 .user-login{
   max-width: 50px;
@@ -120,7 +136,7 @@ body {
 .modal-login {
   color: #1D2934;
   width: 350px;
-  margin: 130px auto 0;
+  margin: 120px auto 0;
   border-radius: 10px;
 
 }
@@ -143,7 +159,6 @@ body {
   text-align: center;
   font-size: 26px;
   margin: 30px 0 -15px;
-
   border-radius: 10px;
 }
 
@@ -163,7 +178,6 @@ body {
   position: absolute;
   top: -5px;
   right: -5px;
-
   border-radius: 10px;
 }
 
@@ -235,7 +249,7 @@ body {
 .contact-modal {
   width: 600px;
   padding: 50px;
-  margin: 30px auto;
+  margin:20px auto;
   border-radius: 10px;
 }
 

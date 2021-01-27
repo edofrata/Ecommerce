@@ -39,7 +39,7 @@ outputBannerNavigation("Home");
 <div class="container">
 
   <!-- <h1 class="my-4" style="text-align: center">Welcome to</h1> -->
-  <img class=" logo_style center" style="text-align: centre" src="../assets/logo.png" alt="Logo image">
+  <img class=" logo_style_index center" style="text-align: centre" src="../assets/logo.png" alt="Logo image">
 
   <!-- Marketing Icons Section -->
   <div class="row">

@@ -10,8 +10,6 @@ function outputHeader($title)
   echo '<!-- Link to external style sheet -->';
   echo '<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">';
   echo ' <link href="../css/FancyShop.css" rel="stylesheet">';
-
-  echo ' <link href="../css/cart.css" rel="stylesheet">';
   echo '</head>';
 
   echo '<body>';
@@ -21,6 +19,7 @@ function outputHeader($title)
     The selected class is applied to the page that matches the page name variable */
 function outputBannerNavigation($pageName)
 {
+ echo ' <body onload="user()">';
   //Output banner and first part of navigation
   echo '<nav class="navbar navbar-expand-lg navbar-light fixed-top " style="background-color:#1D2934;>';
 
@@ -74,10 +73,15 @@ function outputBannerNavigation($pageName)
   echo '</ul>';
   echo '</div>';
   
-  echo ' <div class="user_login">
-   <a href="#myModal" onaction class="trigger-btn" data-toggle="modal"><img  src="../assets/user.png" alt="Logo image"></a>
+  echo '<div class="user" style="color:white"> 
+        <p class="text-center" id="check_login"></p>
+        </div>';
+
+  echo ' <div id="user_mode" class="user_login">
+  <a href="#myModal" class="trigger-btn" data-toggle="modal"><img  src="../assets/user.png" alt="Logo image"></a>
    </div>';
 
+  
   // search bar implementation
   echo ' <form class="form-inline my-2 my-lg-0 ml-auto">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -286,7 +290,6 @@ function scripts()
           <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>       
           <script src="../js/basket.js"></script>
           <script src="../js/register.js"></script>
-          <script src="../js/cart.js"></script>
           <script src="../js/login_recognition.js"></script>';
 }
 //----------------------Outputs closing body tag and closing HTML tag---------------------
