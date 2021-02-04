@@ -1,7 +1,7 @@
 <?php
 include('common.php');
 outputHeader("FancyShop");
-outputBannerNavigation("Home");
+outputBannerNavigation("C.M.S");
 ?>
 
 <!------------------------------- CMS LAYOUT SIDEBAR-------------------------------------->

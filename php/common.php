@@ -10,6 +10,7 @@ function outputHeader($title)
   echo '<!-- Link to external style sheet -->';
   echo '<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">';
   echo ' <link href="../css/FancyShop.css" rel="stylesheet">';
+
   echo '</head>';
 
   echo '<body>';
@@ -104,7 +105,7 @@ function outputBannerNavigation($pageName)
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                      </div>
                     <div class="modal-body">
-                   <form onsubmit="return login_real()" method="post"> 
+                   <form onsubmit="return login_real()"> 
                       <div class="form-group">
                         <input type="text" id="login_email" class="form-control" name="username" placeholder="Email" required="required">		
                       </div>
@@ -207,7 +208,7 @@ function cards($Product, array $products)
     </div>
       <div class="card-body" style="background-color: #e3f2fd;">
       
-        <p class="card-text" style= "text-align: center">Have a look and pick the console you think it is for you, from <br><strong> PS5, Xbox series X, PS4 and Xbox one</strong></p>
+        <p class="card-text" style= "text-align: center">Have a look and pick the '. $Product .' you think is for you, from <br><strong> PS5, Xbox series X, PS4 and Xbox one</strong></p>
       </div>
       <div class="card-footer bg-dark">
         <a href="products.php" class="btn btn-primary center">See all</a>
@@ -283,15 +284,18 @@ function csm_user($date, $name, $price)
           </tr>';
 }
 
+// javascripts scripts
 function scripts()
 {
-
   echo '  <script src="../vendor/jquery/jquery.min.js"></script>
           <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>       
           <script src="../js/basket.js"></script>
           <script src="../js/register.js"></script>
-          <script src="../js/login_recognition.js"></script>';
+          <script src="../js/login_recognition.js"></script>
+          <script src="../js/account_settings.js"></script>';
 }
+
+
 //----------------------Outputs closing body tag and closing HTML tag---------------------
 function outputFooter()
 {
@@ -331,9 +335,6 @@ function outputFooter()
             <ul class="list-unstyled my-2">
               <li>
                 <a href="contact.php" class="text-white">Contact</a>
-              </li>
-              <li>
-                <a href="cms.php" class="text-white">CMS</a>
               </li>
 
             </ul>

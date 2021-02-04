@@ -1,16 +1,4 @@
 
-//Check to see if user is logged in already
-
-function checkLogin() {
-    if (sessionStorage.logged_in_user !== undefined) {
-        //Extract details of logged in user
-        let user = JSON.parse(localStorage[sessionStorage.logged_in_user]);
-
-        //Say hello to logged in user
-        document.getElementById("logged_check").innerHTML = user_login.email + " logged in.";
-    }
-}
-
 // Tracking the user
 let cookies = document.cookie;
 
@@ -29,14 +17,15 @@ function login_real() {
     if (email === "admin" && password === "admin") {
 
         validated = true;
+        
         // clears any failures
         document.getElementById("login_failure").innerHTML = "";
         // we save the session in loggedInUser
         sessionStorage.logged_in_user = "admin";
 
         // Relocates the page if everything went through
-        location.replace("cms_products.php");
-        return validated;
+       location.replace("contact.php");
+   
     }
     else if (localStorage[email] === undefined) {
 
@@ -87,14 +76,14 @@ function user() {
     let email = sessionStorage.logged_in_user;
     if(email === "admin"){
 
-        document.getElementById("user_mode").innerHTML = "<div class='btn-group'> <button type='button' class='btn btn-dark dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='#'>Account</a><div class='dropdown-divider'></div><a class='dropdown-item' onclick='sign_out()'>Sign Out</a> </div></div>";
+        document.getElementById("user_mode").innerHTML = "<div class='btn-group'> <button type='button' class='test btn btn-dark dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='cms.php'>C.M.S</a><div class='dropdown-divider'></div><a class='dropdown-item' onclick='sign_out()'>Sign Out</a> </div></div>";
         document.getElementById("check_login").innerHTML = "Hello <br> admin!";
     }
    else if (email != null) {
 
         var name = JSON.parse(localStorage[email]).full_name;
         var nickname = name.substr(0, name.indexOf(" "));
-        document.getElementById("user_mode").innerHTML = "<div class='btn-group'> <button type='button' class='btn btn-dark dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='#'>Account</a><a class='dropdown-item' href='#'>My Orders</a><div class='dropdown-divider'></div><a class='dropdown-item' onclick='sign_out()'>Sign Out</a> </div></div>";
+        document.getElementById("user_mode").innerHTML = "<div class='btn-group'> <button type='button' class='test btn btn-dark dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='account.php'>Account</a><a class='dropdown-item' href='my_orders.php'>My Orders</a><div class='dropdown-divider'></div><a class='dropdown-item' onclick='sign_out()'>Sign Out</a> </div></div>";
         document.getElementById("check_login").innerHTML = "Hello <br> " + nickname + "!";
 
     } else {

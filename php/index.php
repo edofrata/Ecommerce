@@ -35,6 +35,7 @@ outputBannerNavigation("Home");
   </div>
 </header>
 
+
 <!-- Page Content -->
 <div class="container">
 
@@ -55,6 +56,8 @@ outputBannerNavigation("Home");
     <h2 style="text-align: center">Products</h2>
 
     <div class="row">
+
+    
       <?php
       intro_product("Marvel’s Spider-Man: Miles Morales", "../assets/game_cover/spiderman_ps5.jpg");
       intro_product("Watch Dogs Legion", "../assets/game_cover/watch_dogsps4.jpg");
@@ -64,6 +67,7 @@ outputBannerNavigation("Home");
       intro_product("Grand Theft Auto V", "../assets/game_cover/gtav.jpg");
       ?>
      
+    
   
     </div>
   </div>

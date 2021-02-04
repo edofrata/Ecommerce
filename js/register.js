@@ -7,7 +7,7 @@ var users_storage = {};
 
 function store_user() {
 
-validated = false;
+    validated = false;
     // Storing the actual value in the storage
     users_storage.full_name = document.getElementById("inputName").value;
     users_storage.email = document.getElementById("inputEmail").value;
@@ -18,89 +18,85 @@ validated = false;
     users_storage.password = document.getElementById("inputPassword").value;
     // users_storage.psw_repeat = document.getElementById("password_repeat_input").value;
 
-
-
-    // // setting colour to all the fields;
-    // document.getElementById("name_input").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("surname_input").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("email_input").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("birth_input").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("ph_number_input").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("address_input").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("postcode_input").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("username_input").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("password_input").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("password_repeat_input").style.backgroundColor = "#FFFFFF";
-    // Checking for any empty field
-
-    if (users_storage.full_name == "") {
-
-        // document.getElementById("name_input").style.backgroundColor = "#ff6e6c";
-
-        alert("Need to insert your Name");
-    }
-
-    else if (users_storage.email == "" || (!users_storage.email.match(email_path))) {
-
-        // document.getElementById("email_input").style.backgroundColor = "#ff6e6c";
-        alert("Need to insert the Email or check if it is valid");
-    }
-
-
-    else if (users_storage.number == "" || users_storage.number.length > 11) {
-
-        // document.getElementById("ph_number_input").style.backgroundColor = "#ff6e6c";
-        alert("Need to insert the Phone Number or it may be not valid");
-    }
-
-
-    else if (users_storage.address == "") {
-
-        // document.getElementById("address_input").style.backgroundColor = "#ff6e6c";
-        alert("Need to insert the Address");
-    }
-
-    else if (users_storage.postcode == "" || users_storage.postcode.length >= 8) {
-
-        // document.getElementById("postcode_input").style.backgroundColor = "#ff6e6c";
-        alert("Need to insert the Postcode");
-    }
-
-   else if(users_storage.email in localStorage){
-
-   
-        // document.getElementById("username_input").style.backgroundColor = "#ff6e6c";
-        alert("The username is already taken");
-    }
-
-
-   else if (users_storage.password == "") {
-
-        // document.getElementById("password_input").style.backgroundColor = "#ff6e6c";
-        alert("Need to insert the Password");
-    }
-    else if (users_storage.password.length <= 6) {
-
-        // document.getElementById("password_input").style.backgroundColor = "#ff6e6c";
-        alert("The password must be longer than 6 characters");
-
-    }
-
-    
-
-    else {
+    if (validation(users_storage) == true) {
 
         // here if everything went through will direct you to the page og login
         console.log(users_storage); //testing if it actually prints out and stores the parameters
-        // document.getElementById("register_form").onsubmit = function() {store_user()}; 
-         //location.replace("index.php");//relocating to the login page
-         validated= true;
-        localStorage[users_storage.email] = JSON.stringify(users_storage);//Stores the details in the licalstorage
 
+        validated = true;
+        localStorage[users_storage.email] = JSON.stringify(users_storage);//Stores the details in the licalstorage
+    }
+
+    else {
+
+        return validated;
     }
     return validated;
 }
 
+function validation(name) {
+
+    check = false;
+
+    if (name.full_name == "") {
+
+        // document.getElementById("name_input").style.backgroundColor = "#ff6e6c";
+
+        alert("Need to insert your Name");
+        return check;
+    }
+
+    // else if (!name.email.match(email_path)) {
+
+    //     // document.getElementById("email_input").style.backgroundColor = "#ff6e6c";
+    //     alert("Need to insert the Email or check if it is valid");
+    //     return check;
+    // }
+
+
+    else if (name.number == "" || name.number.length > 11) {
+
+        // document.getElementById("ph_number_input").style.backgroundColor = "#ff6e6c";
+        alert("Need to insert the Phone Number or it may be not valid");
+        return check;
+    }
+
+
+    else if (name.address == "") {
+
+        // document.getElementById("address_input").style.backgroundColor = "#ff6e6c";
+        alert("Need to insert the Address");
+        return check;
+    }
+
+    else if (name.postcode == "" || name.postcode.length >= 8) {
+
+        // document.getElementById("postcode_input").style.backgroundColor = "#ff6e6c";
+        alert("Need to insert the Postcode");
+        return check;
+    }
+
+    else if (name.email in localStorage) {
+
+        // document.getElementById("username_input").style.backgroundColor = "#ff6e6c";
+        alert("The username is already taken");
+        return check;
+    }
+    
+    else if (name.password.length <= 6) {
+
+        // document.getElementById("password_input").style.backgroundColor = "#ff6e6c";
+        alert("The password must be longer than 6 characters");
+
+        return check;
+    }
+
+    else {
+        check = true;
+
+        return check;
+    }
+}
 
 // this function checks the name validation
 function check_name(name) {
@@ -123,13 +119,13 @@ function check_postcode(postcode) {
     postcode.value = postcode.value.replace(check, "");
 
     var upper_case = document.getElementById("inputPostcode");
-// transforms the letters in uppercase
+    // transforms the letters in uppercase
     upper_case.value = upper_case.value.toUpperCase();
 
 
 }
 
-function check_email(email){
+function check_email(email) {
 
     var check = /[^0-9\\a-z\\.\\_\\-\\@]/gi;
     email.value = email.value.replace(check, "");
@@ -150,3 +146,4 @@ function check_username(username) {
 
 
 }
+
