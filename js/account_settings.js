@@ -1,78 +1,113 @@
 
+// function for the account settings
+async function update_user(element) {
 
-// needs to retrieve information from the user
-let email = sessionStorage.logged_in_user;
-// for the left user
-document.getElementById("name_account").innerHTML = JSON.parse(localStorage[email]).full_name;
-document.getElementById("email_account").innerHTML = JSON.parse(localStorage[email]).email;
+    let email;
+    let password;
+    // variable to send the form and needs to return true
+    let send_form = true;
+    // the parsed data received
+    let parsing;
+    // variable that takes the name for the form 
+    let form_element = element.form;
+    // the value of the email
+    let user_email = document.getElementById('eMail');
+// check if it is a button or not
+    let button = false;
 
-// for the form
-document.getElementById("fullName").value = JSON.parse(localStorage[email]).full_name;
-document.getElementById("DoB").value = JSON.parse(localStorage[email]).birth;
-document.getElementById("phone_account").value = JSON.parse(localStorage[email]).number;
-document.getElementById("Street").value = JSON.parse(localStorage[email]).address;
-document.getElementById("postcode").value = JSON.parse(localStorage[email]).postcode;
+// details for the user made in objects
+    let object_details = {};
 
-function update() {
+// if the tagname is a button it will enter and register all the details
+    if (element.tagName == 'BUTTON') {
 
+        const formEntries = new FormData(form_element).entries();
+        object_details = Object.assign(...Array.from(formEntries, ([name, value]) => ({ [name]: value })));
+        button = true;
+        console.log(JSON.stringify(object_details));
+    }
 
-    if (document.getElementById("password").value !== document.getElementById("password_confirm").value) {
+// the passwords must match if not it won't enter 
+    if (document.getElementById("password").value !== document.getElementById("password_confirm").value) { alert("The new passwords do not match!") }
 
+    else {
+        // function that retrives if the email user exists.
+        let email_check = function (response) {
+   
+            console.log(response);
+            send_form = response ? true : false;
+            console.log('submit is: ' + send_form)
 
-        alert("The new passwords do not match!");
-
-    } else {
-
-        var parsing = JSON.parse(localStorage[email]);
-
-        console.log(parsing.full_name = document.getElementById("fullName").value);
-        console.log(parsing.email = document.getElementById("eMail").value);
-        console.log(parsing.birth = document.getElementById("DoB").value);
-        console.log(parsing.number = document.getElementById("phone_account").value);
-        console.log(parsing.address = document.getElementById("Street").value);
-        console.log(parsing.postcode = document.getElementById("postcode").value);
-        console.log(parsing.password = document.getElementById("password").value);
-
-
-        if (parsing.email === JSON.parse(localStorage[email]).email) { alert("You can't update the email with the same one"); }
-
-        else if (parsing.password === JSON.parse(localStorage[email]).password) { alert("You can't update the same password"); }
-
-        else if (parsing.password == "" || document.getElementById("password_confirm").value == "") {
-
-            parsing.password = JSON.parse(localStorage[email]).password;
-            console.log("the password remains the same");
+            if (send_form) {
+                parsing = JSON.parse(response);
+                email = parsing.email;
+                password = parsing.password;
+                console.log(email + " " + password)
+            }
         }
 
-        if (parsing.email == "" && JSON.parse(localStorage[email]).password == parsing.password) { refresh(); }
+        // checking if the email inserted from the user is already taken
+        let new_email = function (response) {
 
-        else { to_index(); }
+            console.log(response);
+            send_form = response == 'null' ? true : false;
 
+            if (!send_form) { alert("Email already taken!"); }
 
-        // if the password or the email changed the page will prompt the user to the index page and make them login again
-        function to_index() {
+        }
 
-            if (validation(parsing) == true) {
+        // replace of the user
+        let replace_user = function (response) {
 
-                if (document.getElementById("eMail").value == "") {
-                    parsing.email = JSON.parse(localStorage[email]).email;
-                }
+            console.log(response);
+            send_form = response ? true : false;
 
-                localStorage.removeItem(email);
-                sessionStorage.clear();
-                localStorage[parsing.email] = JSON.stringify(parsing);
-                console.log("Everything has been updated");
-                location.replace("index.php");
+            if (!send_form) {
 
+                alert("There has been an error!");
             }
 
+            else {
+                sessionStorage.user = object_details.new_email;
+                form_element.submit();
+            }
         }
-        // if email and password haven't changed then it will just refresh the page
-        function refresh() {
-            parsing.email = JSON.parse(localStorage[email]).email;
-            localStorage[parsing.email] = JSON.stringify(parsing);
-            console.log("Everything has been updated");
-            location.replace("account.php");
+
+        // checking if the user exists
+        await ajax_fetch("find_customer.php", { email: sessionStorage.getItem("user")}, "post", email_check);
+        if (user_email.value !== sessionStorage.getItem("user")) {
+            // calling for setting the new datas
+            await ajax_fetch("find_customer.php", { email: user_email.value}, "post", new_email);
+        }
+        // if the user does not want to update is password just live it blanck
+        if (object_details.new_password != "") {
+            if (password === object_details.new_password) {
+                // if password is equal to the old one, the user cannot update it;
+                send_form = false;
+                alert("You can't use the same password");
+            }
+            // needs to check the length of the password which must be longer than 6 characters
+            else if(object_details.new_password){
+             if(object_details.new_password.length <= 6){
+// if the password is less than 6 characters the form won't send the details
+                send_form = false;
+                alert("Password must be longer than 6 characters");
+            }
+        }
+        } else {
+            //  if empty the password will be set as the old one;
+            object_details.new_password = password;
+            document.getElementById('password').value = password;
+            
+        }
+
+        
+    //  if the button and the send form are true then it will send the datasfor replacing the user details
+        if (button && send_form){
+            delete object_details.confirm_password;
+            console.log(JSON.stringify(object_details));
+        await ajax_fetch("replace_customer.php", object_details, "post", replace_user);
         }
     }
 }
+

@@ -2,8 +2,63 @@
 include('common.php');
 outputHeader("FancyShop");
 outputBannerNavigation("C.M.S");
-?>
 
+// function that displays the information on the table and creates the rows with the information requested
+function products_table(){
+
+  $collection = collect_find('Products');
+
+  $products = $collection->find();
+
+  foreach ($products as $item) {
+
+      $id  = ((array) $item['_id'])['oid'];
+      $item = (array) $item;
+          cms_user($item['name'], $item['price'],$item['stock'], $id);
+          
+  }
+}
+
+// function for counting the products 
+function count_products($collection){
+  
+$collection_prod = collect_find($collection);
+
+$cursor = $collection_prod->find()->toArray();
+
+return count($cursor);
+
+}
+
+// function which will tell the exact percentage if decreases or increseases
+function percentage($collection){
+
+  $number = 10;
+  $new_number = count_products($collection);
+
+  $new_value = $new_number - $number;
+
+  $percentage = abs(($new_value / $number) * 100);
+
+  
+  if ($new_number < $number){
+
+     return $percentage . '% decrease';
+
+  }else if($new_number == $number){
+
+    return $percentage . '%';
+  }
+  
+  else {
+
+    return $percentage . '% increase';
+
+  }
+ 
+}
+
+echo '
 <!------------------------------- CMS LAYOUT SIDEBAR-------------------------------------->
 <div class="cms_body">
 <div class="container-fluid">
@@ -12,109 +67,92 @@ outputBannerNavigation("C.M.S");
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="cms.php">
+          <a class="nav-link " href="cms_products.php">
+          <i class="zmdi zmdi-shopping-cart"></i>
+          Products 
+        </a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link active" href="cms.php">
               <i class="zmdi zmdi-widgets"></i>
-              Dashboard <span class="sr-only">(current)</span>
+             Orders <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cms_products.php">
-              <i class="zmdi zmdi-shopping-cart"></i>
-              Products
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="zmdi zmdi-accounts"></i>
-              Members
-            </a>
-          </li>
-        </ul>
-
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center pl-3 mt-4 mb-1 text-muted">
-          <span>Saved reports</span>
-          <a class="d-flex align-items-center text-muted" href="#">
-            <i class="zmdi zmdi-plus-circle-o"></i>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="zmdi zmdi-file-text"></i>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="zmdi zmdi-file-text"></i>
-              Last quarter
-            </a>
-          </li>
+          <a class="nav-link " href="cms_users.php">
+           <i class="zmdi zmdi-widgets"></i>
+         Users
+         </a>
+       </li>
         </ul>
       </div>
     </nav>
 
-<!------------------------------------ CARDS LAYOUT--------------------------------->
+    <!------------------------------------ CARDS LAYOUT--------------------------------->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 my-3">
       <div class="card-list">
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
             <div class="card_cms blue">
               <div class="title">all products</div>
-              <div class="value">5</div>
-              <div class="stat"><b>13</b>% increase</div>
+              <div class="value">'. count_products('Products') . '</div>
+              <div class="stat">'. percentage('Products') . '</div>
             </div>
           </div>
           <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
             <div class="card_cms green">
               <div class="title">members</div>
-              <div class="value">3</div>
-              <div class="stat"><b>4</b>% increase</div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card_cms orange">
-              <div class="title">total budget</div>
-              <div class="value">£30,000</div>
-              <div class="stat"><b>3% decrease</b></div>
+              <div class="value">'. count_products('Users') . '</div>
+              <div class="stat">'. percentage('Users') . '</div>
             </div>
           </div>
           <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
             <div class="card_cms red">
-              <div class="title">new customers</div>
-              <div class="value">3</div>
-              <div class="stat"><b>13</b>% decrease</div>
+              <div class="title">Orders</div>
+              <div class="value">'. count_products('Orders') . '</div>
+              <div class="stat"><b>'. percentage('Orders') . '</div>
             </div>
           </div>
         </div>
       </div>
 
- <!------------------------------ TABLE LAYOUT----------------------->
+      <!------------------------------ TABLE LAYOUT----------------------->
       <div class="projects mb-4">
         <div class="projects-inner">
           <header class="projects-header">
-            <div class="title">Orders Made</div>
-            <div class="count">| 5 orders</div>
+            <div class="title">Products</div>
+           
             <i class="zmdi zmdi-download"></i>
           </header>
           <table class="projects-table">
             <thead>
               <tr>
-                <th>Orders</th>
-                <th>Date</th>
-                <th>User</th>
-                <th>Order Cost</th>
-                <th>Status</th>
+                <th>Order ID</th>
+                <th>Customer ID</th>
+                <th>Address</th>
+                <th>Cost</th>
+                <th> Status</th>
               </tr>
             </thead>
- <!-------------- USER PROMPT FROM PHP --------------------------->
-<?php 
 
-csm_user("15th Jan 2021", "Edoardo Fratantonio", "£299");
-csm_user("15th Jan 2021", "John Room", "£299");
-csm_user("15th Jan 2021", "Joseph Godwins", "£299");
-csm_user("15th Jan 2021", "Sakarye Trust", "£299");
-csm_user("15th Jan 2021", "Matt Watson", "£299");
+
+<!-------------- USER PROMPT FROM PHP --------------------------->';
+
+
+
+
+// php which will display the oprders in the cms table
+$collection = collect_find('Orders');
+
+$products = $collection->find();
+
+foreach ($products as $item) {
+
+    $id  = ((array) $item['_id'])['oid'];
+    $item = (array) $item;
+        cms_orders( $id, $item['customer_id'], $item['shipping_address'],$item['cost']);
+}
+
 ?>
           
           </table>

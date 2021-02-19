@@ -1,6 +1,7 @@
 body {
   padding-top: 70px;
-  /* background-color: #ecf0f1; */
+
+  min-height: 100%;
 
 }
 
@@ -14,6 +15,8 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
+/* ------SORT BUTTON ------ */
 
 /*------product page adjustments for carousel ---------*/
 .products {
@@ -75,13 +78,14 @@ body {
 
 /* -----------NAVBAR------------ */
 
+
 .navbar2 a {
   color: white;
   font-size: 20px;
-  font-weight:200px;
+  font-weight: 200px;
   display: table;
   width: 100%;
-  margin:0;
+  margin: 0;
 
 }
 
@@ -94,35 +98,38 @@ body {
   width: 250px;
   height: 55px;
 }
+
+
 /*---------------- LOG IN BUTTON ---------*/
 
-.btn2{
+.btn2 {
   margin-top: 7px;
   max-width: 30px;
   max-height: 35px;
 }
 
-.dropdown-item{
+.dropdown-item {
   color: white;
 }
 
 
-.btn-dark{
+.btn-dark {
   background-color: #1D2A35;
   border-color: #1D2A35;
 }
+
 /* -------------login image -------------*/
-.user_login{
+.user_login {
   position: relative;
   max-width: 50px;
   max-height: 50px;
-  right:5px;
- 
+  right: 5px;
+
 }
 
-#check_login{
-position: relative;
-right: 15px;
+#check_login {
+  position: relative;
+  right: 15px;
 }
 
 .user_login img {
@@ -130,6 +137,7 @@ right: 15px;
   max-width: 50px;
   margin-right: 10px;
 }
+
 /*-----------BASKET------------ */
 
 
@@ -141,18 +149,23 @@ right: 15px;
 /*------------- MY orders --------------------*/
 
 
-.table{
+.table {
 
   color: #fff;
-  
+
 }
-.main-container{
+.pb-5{
+
+  padding-bottom: 14rem !important;
+
+}
+.main-container {
   position: relative;
-  margin-top:40px;    
+  margin-top: 40px;
   bottom: 100px;
 }
 
-.table tbody tr:hover{
+.table tbody tr:hover {
 
   background-color: #E7F8FD;
 }
@@ -168,6 +181,7 @@ right: 15px;
   color: #bcd0f7;
   background: #1A233A;
 }
+
 .account-settings .user-profile {
   margin: 0 0 1rem 0;
   padding-bottom: 1rem;
@@ -221,6 +235,7 @@ right: 15px;
   background: #ffffff;
   color: #000000;
 }
+
 /* ----------------Login Design-------------- */
 .modal-login {
   color: #1D2934;
@@ -338,7 +353,7 @@ right: 15px;
 .contact-modal {
   width: 600px;
   padding: 50px;
-  margin:20px auto;
+  margin: 20px auto;
   border-radius: 10px;
 }
 
@@ -429,9 +444,25 @@ right: 15px;
   color: #202020;
   font-size: 13px;
   padding-top: 70px;
-  height: 200%;
+  min-height: 100%;
 }
 
+/* aligning the buttons */
+.add_cms {
+
+  position: absolute;
+  right: 190px;
+
+}
+
+.delete_cms {
+
+  position: absolute;
+  right: 30px;
+
+}
+
+/* ------- end ----------- */
 a:hover {
   text-decoration: none;
 }
@@ -744,6 +775,210 @@ figure {
   vertical-align: middle;
 }
 
+/* ----------------------------EMPTY  CART ----------------------------------- */
+
+.empty-cart {
+  width: 50vw;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Maison Neue';
+  font-weight: 300;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+svg {
+  max-width: 60%;
+  padding: 5rem 3rem;
+}
+
+svg #oval,
+svg #plus,
+svg #diamond,
+svg #bubble-rounded {
+  -webkit-animation: plopp 4s ease-out infinite;
+  animation: plopp 4s ease-out infinite;
+}
+
+svg #oval:nth-child(1),
+svg #plus:nth-child(1),
+svg #diamond:nth-child(1),
+svg #bubble-rounded:nth-child(1) {
+  -webkit-animation-delay: -240ms;
+  animation-delay: -240ms;
+}
+
+svg #oval:nth-child(2),
+svg #plus:nth-child(2),
+svg #diamond:nth-child(2),
+svg #bubble-rounded:nth-child(2) {
+  -webkit-animation-delay: -480ms;
+  animation-delay: -480ms;
+}
+
+svg #oval:nth-child(3),
+svg #plus:nth-child(3),
+svg #diamond:nth-child(3),
+svg #bubble-rounded:nth-child(3) {
+  -webkit-animation-delay: -720ms;
+  animation-delay: -720ms;
+}
+
+svg #oval:nth-child(4),
+svg #plus:nth-child(4),
+svg #diamond:nth-child(4),
+svg #bubble-rounded:nth-child(4) {
+  -webkit-animation-delay: -960ms;
+  animation-delay: -960ms;
+}
+
+svg #oval:nth-child(5),
+svg #plus:nth-child(5),
+svg #diamond:nth-child(5),
+svg #bubble-rounded:nth-child(5) {
+  -webkit-animation-delay: -1200ms;
+  animation-delay: -1200ms;
+}
+
+svg #oval:nth-child(6),
+svg #plus:nth-child(6),
+svg #diamond:nth-child(6),
+svg #bubble-rounded:nth-child(6) {
+  -webkit-animation-delay: -1440ms;
+  animation-delay: -1440ms;
+}
+
+svg #oval:nth-child(7),
+svg #plus:nth-child(7),
+svg #diamond:nth-child(7),
+svg #bubble-rounded:nth-child(7) {
+  -webkit-animation-delay: -1680ms;
+  animation-delay: -1680ms;
+}
+
+svg #oval:nth-child(8),
+svg #plus:nth-child(8),
+svg #diamond:nth-child(8),
+svg #bubble-rounded:nth-child(8) {
+  -webkit-animation-delay: -1920ms;
+  animation-delay: -1920ms;
+}
+
+svg #oval:nth-child(9),
+svg #plus:nth-child(9),
+svg #diamond:nth-child(9),
+svg #bubble-rounded:nth-child(9) {
+  -webkit-animation-delay: -2160ms;
+  animation-delay: -2160ms;
+}
+
+svg #oval:nth-child(10),
+svg #plus:nth-child(10),
+svg #diamond:nth-child(10),
+svg #bubble-rounded:nth-child(10) {
+  -webkit-animation-delay: -2400ms;
+  animation-delay: -2400ms;
+}
+
+svg #oval:nth-child(11),
+svg #plus:nth-child(11),
+svg #diamond:nth-child(11),
+svg #bubble-rounded:nth-child(11) {
+  -webkit-animation-delay: -2640ms;
+  animation-delay: -2640ms;
+}
+
+svg #oval:nth-child(12),
+svg #plus:nth-child(12),
+svg #diamond:nth-child(12),
+svg #bubble-rounded:nth-child(12) {
+  -webkit-animation-delay: -2880ms;
+  animation-delay: -2880ms;
+}
+
+svg #oval:nth-child(13),
+svg #plus:nth-child(13),
+svg #diamond:nth-child(13),
+svg #bubble-rounded:nth-child(13) {
+  -webkit-animation-delay: -3120ms;
+  animation-delay: -3120ms;
+}
+
+svg #oval:nth-child(14),
+svg #plus:nth-child(14),
+svg #diamond:nth-child(14),
+svg #bubble-rounded:nth-child(14) {
+  -webkit-animation-delay: -3360ms;
+  animation-delay: -3360ms;
+}
+
+svg #oval:nth-child(15),
+svg #plus:nth-child(15),
+svg #diamond:nth-child(15),
+svg #bubble-rounded:nth-child(15) {
+  -webkit-animation-delay: -3600ms;
+  animation-delay: -3600ms;
+}
+
+svg #oval:nth-child(16),
+svg #plus:nth-child(16),
+svg #diamond:nth-child(16),
+svg #bubble-rounded:nth-child(16) {
+  -webkit-animation-delay: -3840ms;
+  animation-delay: -3840ms;
+}
+
+svg #bg-line:nth-child(2) {
+  fill-opacity: 0.3;
+}
+
+svg #bg-line:nth-child(3) {
+  fill-opacity: 0.4;
+}
+
+#h3_basket {
+  font-size: 2rem;
+  line-height: 2rem;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+}
+
+#p_basket {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  line-height: 24px;
+  max-width: 80%;
+  margin: 1.25rem auto 0 auto;
+}
+
+/* body {
+  background: #f2f2f2;
+} */
+@-webkit-keyframes plopp {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0, -10px);
+    opacity: 0;
+  }
+}
+
+@keyframes plopp {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0, -10px);
+    opacity: 0;
+  }
+}
+
 /* ---------------------------- Basket design --------------------------------*/
 
 
@@ -837,7 +1072,9 @@ h1,
  * @extends: _column;
  */
 .product-image {
-  width: 13%;
+  width: 18%;
+  max-width: 120px;
+  max-height: 160px;
   background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") no-repeat center / cover transparent;
 }
 
@@ -929,6 +1166,7 @@ h1,
 .cart-totals {
   border-top: 1px solid #bdc3c7;
   margin-bottom: 3rem;
+  margin-top: 300px;
 }
 
 .cart-totals ._column {
@@ -986,4 +1224,13 @@ h1,
   transition: all .5s ease;
   transform: translate3d(0, -100%, 0);
   opacity: 0;
+}
+
+/* ----------------------------FOOTER---------------------- */
+
+.footer_class {
+
+  margin-top: 0;
+  bottom: 0;
+
 }

@@ -1,100 +1,90 @@
 
-// Tracking the user
-let cookies = document.cookie;
+
+async function login_real(element) {
+
+    let form = element.form;
+    let element_tag = element.tagName;
+    let element_name = element.getAttribute('name');
+    validated = true;
+    let form_data;
 
 
-function login_real() {
+    const formEntries = new FormData(form).entries();
+    form_data = Object.assign(...Array.from(formEntries, ([name, value]) => ({ [name]: value })));
+// giving the email value from the form
+    email = form_data.email;
+    password = form_data.password;
 
-    validated = false;
-    // document.getElementById("login_password").style.backgroundColor = "#FFFFFF";
-    // document.getElementById("login_username").style.backgroundColor = "#FFFFFF";
-
-    // retriving the email inserted 
-    let email = document.getElementById("login_email").value;
-    // retriving password
-    let password = document.getElementById("login_password").value;
-
-    if (email === "admin" && password === "admin") {
-
-        validated = true;
-        
-        // clears any failures
-        document.getElementById("login_failure").innerHTML = "";
-        // we save the session in loggedInUser
-        sessionStorage.logged_in_user = "admin";
-
-        // Relocates the page if everything went through
-       location.replace("contact.php");
-   
-    }
-    else if (localStorage[email] === undefined) {
-
-        // meaning that the user does not have an account
-        document.getElementById("login_failure").innerHTML = "Are you sure that you have an account?";
-
-        document.getElementById("login_email").style.backgroundColor = "#ff6e6c";
-        return validated;
-
-    } else {
-        //  The user has an account
-        let user_login = JSON.parse(localStorage[email]); //Convert to JS
+    // changing the message if the user is not recognised
+    let change = document.getElementById("login_failure");
+    document.getElementById("login_email").style.backgroundColor = "#ffff";
+    document.getElementById("login_password").style.backgroundColor = "#ffff";
+    change.innerHTML = "";
 
 
+    let get_email = function (response) {
 
-        // checking ig the password is in the system
-
-        if (password === user_login.password) {
-
+        console.log(response);
+// checking if the response outcome is admin for staff login
+        if (response === 'admin') {
             validated = true;
-            // clears any failures
-            document.getElementById("login_failure").innerHTML = "";
-            // we save the session in loggedInUser
-            sessionStorage.logged_in_user = user_login.email;
+        }
+        else if (response == 'null') {
 
-            // Relocates the page if everything went through
-            location.replace("index.php");
+            change.innerHTML = "Are you sure that you have an account?";
+            document.getElementById("login_email").style.backgroundColor = "#ff6e6c";
+            validated = false;
+        }
+    }
+
+    let get_password = function (response) {
+
+        console.log(response);
+// checking if the response outcome is admin for staff login
+        if (response === 'admin') { 
+            sessionStorage.user = response;
+            form.submit();
+         }
+        else if (!response) { 
+            validated = false; 
+        } else {
+// if response is not null and neither admin then it means that it is a customer
+            let pass_reply = JSON.parse(response);
+            pass_reply = pass_reply ? pass_reply.password : "";
+
+            if (pass_reply === password) {
+                validated = true;
+            } else {
+                document.getElementById("login_password").style.backgroundColor = "#ff6e6c";
+                change.innerHTML = "Password Not Recognized. Please try again.";
+                validated = false;
+            }
+        }
+    }
+
+
+    await ajax_fetch("find_customer.php", { email: email }, "post", get_email)
+
+    if (element_name == "password" || element_tag == 'BUTTON') {
+        if (validated) {
+            // checking ig the password is in the system
+            if (form_data.email) {
+                await ajax_fetch("find_customer.php", { email: email }, "post", get_password)
+            }
 
         }
-        else {
-
-            // password has not been found
-
-            document.getElementById("login_password").style.backgroundColor = "#ff6e6c";
-            document.getElementById("login_failure").innerHTML = "Password Not Recognized. Please try again.";
-
+        if (element.tagName == 'BUTTON' && validated) {
+            sessionStorage.user = email;
+            form.submit();
         }
-
     }
-
-
-    return validated;
 }
 
-// recognise if it is a guest or a visitor
-function user() {
-
-    let email = sessionStorage.logged_in_user;
-    if(email === "admin"){
-
-        document.getElementById("user_mode").innerHTML = "<div class='btn-group'> <button type='button' class='test btn btn-dark dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='cms.php'>C.M.S</a><div class='dropdown-divider'></div><a class='dropdown-item' onclick='sign_out()'>Sign Out</a> </div></div>";
-        document.getElementById("check_login").innerHTML = "Hello <br> admin!";
-    }
-   else if (email != null) {
-
-        var name = JSON.parse(localStorage[email]).full_name;
-        var nickname = name.substr(0, name.indexOf(" "));
-        document.getElementById("user_mode").innerHTML = "<div class='btn-group'> <button type='button' class='test btn btn-dark dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='account.php'>Account</a><a class='dropdown-item' href='my_orders.php'>My Orders</a><div class='dropdown-divider'></div><a class='dropdown-item' onclick='sign_out()'>Sign Out</a> </div></div>";
-        document.getElementById("check_login").innerHTML = "Hello <br> " + nickname + "!";
-
-    } else {
-
-        document.getElementById("check_login").innerHTML = "Hello <br> Visitor!";
-    }
-
-}
-
+// function for sign out 
 function sign_out() {
 
+    document.cookie = "PHPSESSID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     sessionStorage.clear();
     location.replace("index.php");
 }
+

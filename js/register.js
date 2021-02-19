@@ -1,102 +1,75 @@
-// checking email path
-const email_path = /\S+@\S+\.\S+/;
 
-// creating a storage to store the users
-var users_storage = {};
+async function validation(control) {
 
+    let button = false;
+    // let form_name = control.form.getAttribute('name');
+    let form_element = control.form;
 
-function store_user() {
+// checks if the input comes from a button or not
+    if(control.tagName == 'BUTTON' ){
+        
+        button = true;
+        console.log('button' + button);
+        control = form_element;
 
-    validated = false;
-    // Storing the actual value in the storage
-    users_storage.full_name = document.getElementById("inputName").value;
-    users_storage.email = document.getElementById("inputEmail").value;
-    users_storage.birth = document.getElementById("inputBirth").value;
-    users_storage.address = document.getElementById("inputAddress").value;
-    users_storage.postcode = document.getElementById("inputPostcode").value;
-    users_storage.number = document.getElementById("inputPhone").value;
-    users_storage.password = document.getElementById("inputPassword").value;
-    // users_storage.psw_repeat = document.getElementById("password_repeat_input").value;
-
-    if (validation(users_storage) == true) {
-
-        // here if everything went through will direct you to the page og login
-        console.log(users_storage); //testing if it actually prints out and stores the parameters
-
-        validated = true;
-        localStorage[users_storage.email] = JSON.stringify(users_storage);//Stores the details in the licalstorage
     }
 
-    else {
+    check = true;
 
-        return validated;
+// array which stores the user details.
+    array = [];
+    console.log(array);
+// it check the response from the AJAX call and checks it.
+    let existing_email = function (response) {
+
+        console.log(response);
+        check = response == 'null' ? true : false;   
+    
+        check ? null : alert("The email is already taken!");
+        
+        }
+    
+// checks if it finds a form or not
+    if (control.getAttribute("name") == 'form') {
+
+        const formEntries = new FormData(control).entries();
+              array = Array.from(formEntries, ([name, value]) => ({[name]: value}));
+
+    } else{
+        obj = new Object;
+        obj[control.getAttribute("name")] = control.value;
+        array.push(obj);
     }
-    return validated;
-}
-
-function validation(name) {
-
-    check = false;
-
-    if (name.full_name == "") {
-
-        // document.getElementById("name_input").style.backgroundColor = "#ff6e6c";
-
-        alert("Need to insert your Name");
-        return check;
-    }
-
-    // else if (!name.email.match(email_path)) {
-
-    //     // document.getElementById("email_input").style.backgroundColor = "#ff6e6c";
-    //     alert("Need to insert the Email or check if it is valid");
-    //     return check;
-    // }
-
-
-    else if (name.number == "" || name.number.length > 11) {
-
-        // document.getElementById("ph_number_input").style.backgroundColor = "#ff6e6c";
-        alert("Need to insert the Phone Number or it may be not valid");
-        return check;
-    }
-
-
-    else if (name.address == "") {
-
-        // document.getElementById("address_input").style.backgroundColor = "#ff6e6c";
-        alert("Need to insert the Address");
-        return check;
-    }
-
-    else if (name.postcode == "" || name.postcode.length >= 8) {
-
-        // document.getElementById("postcode_input").style.backgroundColor = "#ff6e6c";
-        alert("Need to insert the Postcode");
-        return check;
-    }
-
-    else if (name.email in localStorage) {
-
-        // document.getElementById("username_input").style.backgroundColor = "#ff6e6c";
-        alert("The username is already taken");
-        return check;
+// checks all the user details
+    for(elem of array){
+        switch(Object.keys(elem)[0]){
+            case "email":
+ // calling the AJAX function with await as the browser needs to wait for the response from the server
+            await ajax_fetch("find_customer.php",elem, "post",existing_email);
+                break;
+            case "password":
+// if check is already false means that something is already wrong 
+                if(check === false){
+                    check = false;
+                }
+// if not it checks if the password is fine 
+                else{check = Object.values(elem)[0].length <= 6 ? false : true ;
+                if (!check) {
+                    alert("The password must be longer than 6 characters");
+                }
+            }
+                break;
+            default:
+                console.log(Object.keys(elem)[0] + " " + Object.values(elem)[0]) ;
+                break;
+        }
     }
     
-    else if (name.password.length <= 6) {
 
-        // document.getElementById("password_input").style.backgroundColor = "#ff6e6c";
-        alert("The password must be longer than 6 characters");
-
-        return check;
-    }
-
-    else {
-        check = true;
-
-        return check;
-    }
+// here it checks whether the boolean button is false and also the check if false.
+    button && check ? form_element.submit() : null;
 }
+
 
 // this function checks the name validation
 function check_name(name) {
@@ -121,22 +94,18 @@ function check_postcode(postcode) {
     var upper_case = document.getElementById("inputPostcode");
     // transforms the letters in uppercase
     upper_case.value = upper_case.value.toUpperCase();
-
-
 }
 
+// checking email path
+const email_path = /\S+@\S+\.\S+/;
 function check_email(email) {
-
     var check = /[^0-9\\a-z\\.\\_\\-\\@]/gi;
     email.value = email.value.replace(check, "");
 }
 // check that the address does not have special characters
 function check_address(address) {
-
     var check = /[^0-9\\a-z\\" "]/gi;
     address.value = address.value.replace(check, "");
-
-
 }
 // gives validation to the username with only certain characters
 function check_username(username) {
@@ -146,4 +115,3 @@ function check_username(username) {
 
 
 }
-

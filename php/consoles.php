@@ -14,14 +14,21 @@ outputBannerNavigation("Products");
                 <h1 class="my-4" style="text-align: center">Consoles</h1>
                 <div class="row">
                     <?php
+// ---------- diplaying only the console and retriving the information needed from the databse -----------
+                    $collection = collect_find('Products');
 
-                    // ---------------CONSOLES-----------------------
-                    item_show("Playstation 5", "£499.99", "../assets/game_console/playstation5.jpeg");
-                    item_show("Xbox Serie X", "£449.99", "../assets/game_console/xbox_x.jpg");
-                    item_show("Playstation 4 Pro", "£259.99", "../assets/game_console/ps4_pro.jpeg");
-                    item_show("Xbox One", "£199.99", "../assets/game_console/xbox_one_buy.jpg");
+                    $products = $collection->find();
 
+                    foreach ($products as $item) {
+
+                        $id  = ((array) $item['_id'])['oid'];
+                        $item = (array) $item;
+                        if ($item['Category'] == "Console") {
+                            item_show($item['name'], $item['price'], $item['img_url'], $id);
+                        }
+                    }
                     ?>
+                    
                 </div>
             </div>
 

@@ -46,32 +46,44 @@ outputBannerNavigation("Home");
   <div class="row">
 
     <?php
-    cards("Consoles",$url_consoles);
+    cards("Consoles", $url_consoles);
 
     cards("Games", $url_games);
     ?>
 
-  <!-- Portfolio Section -->
-  <div>
-    <h2 style="text-align: center">Products</h2>
+    <!-- Portfolio Section -->
+    <div>
+      <h2 style="text-align: center">Products</h2>
 
-    <div class="row">
+      <div class="row">
 
-    
-      <?php
-      intro_product("Marvel’s Spider-Man: Miles Morales", "../assets/game_cover/spiderman_ps5.jpg");
-      intro_product("Watch Dogs Legion", "../assets/game_cover/watch_dogsps4.jpg");
-      intro_product("Fifa 21", "../assets/game_cover/fifa21_game.jpg");
-      intro_product("Call Of Duty: Black Ops Cold War", "../assets/game_cover/cod.jpg");
-      intro_product("Fortnite", "../assets/game_cover/fortnite_game.jpg");
-      intro_product("Grand Theft Auto V", "../assets/game_cover/gtav.jpg");
-      ?>
-     
-    
-  
+<!-- function that prints out the cards of the first six products -->
+        <?php
+
+        $collection = collect_find('Products');
+
+        $products = $collection->find();
+        // incrementing the iterator so I can show only the firtst 6 products
+        $i = 0;
+        // iterating through the products
+        foreach($products as $item){
+
+          $id  = ((array) $item['_id'])['oid'];
+          $item = (array) $item;
+          if($item['Category'] == "Game" && $i < 6){
+            intro_product($item['name'], $item['img_url'], $id);
+            $i++;
+            }
+
+        }
+
+        ?>
+
+<!--------------------------------END-------------------------------->
+
+      </div>
     </div>
   </div>
-</div>
   <!-- /.row -->
 </div>
 <!-- /.container -->

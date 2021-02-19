@@ -1,69 +1,74 @@
 <?php
 include('common.php');
-outputHeader("FancyShop");
-outputBannerNavigation("Products");
-?>
-<!-- Page Content -->
-<div class="container">
 
-  <div class="row">
+// function that prints out all the products and uses the function which is in 'common.php'
+function cards_print($products)
+{
 
-    <!-- <div class="col-lg-8 center">
+  if (!$products) {
+    $collection = collect_find('Products');
+    $products = $collection->find();
+  }
 
-      <h1 class="my-4 center">Products</h1>
-      <div class="list-group">
-        <a href="products.php" class="list-group-item center">All Products</a>
-        <a href="#" class="list-group-item center">Consoles</a>
-        <a href="#" class="list-group-item center">Games</a>
+  foreach ($products as $item) {
 
-      </div>
+    $id  = ((array) $item['_id'])['oid'];
+    $item = (array) $item;
+    item_show($item['name'], $item['price'], $item['img_url'], $id);
+  }
+}
 
-    </div> -->
-    <!-- /.col-lg-3 -->
+// main page
+function page($data)
+{
 
-    <div class="col-lg-12">
+  echo '       
+        <!---------------- Page Content ----------------------------->
+        <div class="container">
 
-      <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-        <div class="carousel-inner" role="listbox">
-          <div class="carousel-item products active">
-            <img class="d-block img-fluid" src="../assets/game_images/ps5_ad.png" alt="First slide">
-          </div>
-          <div class="carousel-item products ">
-            <img class="d-block img-fluid" src="../assets/game_images/xboxonex_ad.jpg" alt="Second slide">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-      <div class="container">
-        <h1 class="my-4" style="text-align: center">All Products</h1>
-        <div class="row">
-          <?php
-
-          // ---------------CONSOLES-----------------------
-          item_show("Playstation 5", "£499.99", "../assets/game_console/playstation5.jpeg");
-          item_show("Xbox Serie X", "£449.99", "../assets/game_console/xbox_x.jpg");
-          item_show("Playstation 4 Pro", "£259.99", "../assets/game_console/ps4_pro.jpeg");
-          item_show("Xbox One", "£199.99", "../assets/game_console/xbox_one_buy.jpg");
+          <div class="row">
 
 
-          // -------------------GAMES--------------------------
-          item_show("Fifa 21", "£49.99", "../assets/game_cover/fifa21_game.jpg");
-          item_show("Fortnite", "£24.99", "../assets/game_cover/fortnite_game.jpg");
-          item_show("Marvel’s Spider-Man: Miles Morales", "£69.99", "../assets/game_cover/spiderman_ps5.jpg");
-          item_show("Forza Horizon 4", "£59.99", "../assets/game_cover/forza_horizon_xbox.jpg");
-          item_show("Grand Theft Auto V", "£25.99", "../assets/game_cover/gtav.jpg");
-          item_show("Watch Dogs Legion", "£34.99", "../assets/game_cover/watch_dogsps4.jpg");
-          item_show("Red Dead Redemption II", "£29.99", "../assets/game_cover/red_dead.jpg");
-          item_show("God Of War", "£39.99", "../assets/game_cover/god_of_war.jpg");
+            <div class="col-lg-12">
 
-          ?>
+              <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                  <div class="carousel-item products active">
+                    <img class="d-block img-fluid" src="../assets/game_images/ps5_ad.png" alt="First slide">
+                  </div>
+                  <div class="carousel-item products ">
+                    <img class="d-block img-fluid" src="../assets/game_images/xboxonex_ad.jpg" alt="Second slide">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+              <div class="container">
+                <div class="d-flex justify-content-end pb-3">
+                  <div class="form-inline">
+                    <label class="text-muted mr-3" for="order-sort">Sort Products</label>
+                    <select class="form-control" id="order_sort" onfocusout="sorting_products(this)">
+                      <option>All</option>
+                      <option>A-Z</option>
+                      <option>High-Low</option>
+                    </select>
+                  </div>
+                </div>
+                <h1 class="my-4" style="text-align: center">All Products</h1>
+
+                <div class="row" id="cards_box">';
+
+  // printing all the products in the database 
+  cards_print($data);
+
+
+  echo '
         </div>
       </div>
 
@@ -71,12 +76,48 @@ outputBannerNavigation("Products");
     </div>
 
 
-  </div>
+  </div> 
 
-</div>
-<?php
-scripts();
-outputFooter();
-?>
+</div> ';
+}
+// main which called from the ajax function made with PHP
+function main_page($data)
+{
+  // header
+  outputHeader("FancyShop");
+  outputBannerNavigation("Products");
+  // body
+  page($data);
+  // footer
+  scripts();
+  outputFooter();
+};
+
+$main = function () {
 
 
+  main_page("");
+};
+
+
+
+// -----------------------SEARCHING BAR----------------------------
+$find_products = function ($method, $ajax, $data) {
+
+  //Include libraries
+  $collection = collect_find('Products');
+
+  $find_item = [
+// making mongoDB case insensitive and finds all the words no matter capitals or half word
+    "name" => new \MongoDB\BSON\Regex(preg_quote($data['name']), "i")
+
+  ];
+
+  $cursor = $collection->find($find_item);
+
+
+  main_page($cursor->toArray());
+
+};
+
+ajax($main, $find_products);
